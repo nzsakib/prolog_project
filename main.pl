@@ -31,7 +31,7 @@ choice(2):-
 	read(NewMovie),
 	(	watchlist(NewMovie)
 	->	write("==> The Movie is already on your Watchlist !!")
-	;	write("The Movie is added to knowledge. "),
+	;	format("~n The Movie is added to knowledge. "),
 		assertz( watchlist(NewMovie) )
 	),
 	get_char(X),nl,
@@ -70,10 +70,10 @@ choice(4):-
 	(  	YearSearch = yes
 	->	write("Specify year: "), read(Year),
 		movie(Movie, Rating, Year, Cat, _), Rating >= Rate,
-		\+ watchlist(Movie), shell(clear),
+		\+ watchlist(Movie),
 		nl, write("Search Result ..."),nl,
 		format("Movie Title    ~30|    Rating   "),nl
-	;	shell(clear),nl, write("Search Result ..."),nl,
+	;	nl, write("Search Result ..."),nl,
 		format("Movie Title   ~30|    Rating   "),nl,
 		movie(Movie, Rating, Released, Cat, _), Rating >= Rate,
 		\+ watchlist(Movie)
